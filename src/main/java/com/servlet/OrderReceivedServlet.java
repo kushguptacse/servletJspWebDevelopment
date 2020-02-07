@@ -5,15 +5,17 @@ import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import data.MenuDataService;
 
 public class OrderReceivedServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 3470816338280531038L;
 	MenuDataService menuDataService = new MenuDataService();
 
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void service(HttpServletRequest request, HttpServletResponse response) {
 
 		int maxId = menuDataService.getFullMenu().size();
 		for (int i = 0; i < maxId; i++) {
@@ -29,6 +31,17 @@ public class OrderReceivedServlet extends HttpServlet {
 		}
 
 		double total = menuDataService.getOrderTotal();
-		response.sendRedirect("thankYou?total=" + total);
+		HttpSession session = request.getSession();
+		session.setAttribute("total", total);
+		// if cookie is disabled then session id needed to be send in request param
+		// which is called url-rewriting.
+		// in java this can be done directly by using encode method. encode method
+		// append jsession id only if cookie is disabled.
+		String url = response.encodeURL("thankYou");
+		try {
+			response.sendRedirect(url);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

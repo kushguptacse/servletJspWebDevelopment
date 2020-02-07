@@ -1,1 +1,10 @@
-com\servlet\SimpleServlet.class
+com\servlet\SearchResultServlet.class
+com\servlet\WelcomeCurrentDateServlet.class
+domain\Order.class
+com\servlet\MenuDataServlet.class
+com\servlet\ThankYouServlet.class
+com\servlet\ViewMenuServlet.class
+domain\MenuItem.class
+com\servlet\OrderReceivedServlet.class
+data\MenuDataService.class
+domain\MenuCategory.class

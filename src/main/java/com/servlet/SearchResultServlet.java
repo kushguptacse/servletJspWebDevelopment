@@ -10,6 +10,8 @@ import data.MenuDataService;
 
 public class SearchResultServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1586871351487889231L;
+
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		try (PrintWriter out = resp.getWriter()) {

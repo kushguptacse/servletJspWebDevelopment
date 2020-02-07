@@ -20,3 +20,11 @@ It is an in-memory java mapand in browser when we see cookie we only see session
 <br/> Zero value means session will never expire.<br/>
 **8** **URL Re-Writing** -> it can be used if cookie is disabled in browser.if cookie is disabled then session id is send in request param<br/>
 In java this can be done directly by using encode method. encode method append jsession id only if cookie is disabled.<br/>
+**9** We can use Security provided by Servlet. for that steps are - <br/>
+**9.1** First create role and add user to role in your tomcat-users.xml. e.g. <br/>
+<role rolename="user"/> <br/>
+<user username="kush" password="password" roles="user"/> <br/>
+**9.2** In application web.xml add security-constraints and add auth-method as FORM inside login-config. <br/>
+**9.3** Create login page which has form action - j_security_check and j_username and j_password for input's<br/>
+**9.4** Now run the application and if we try to access restricted resource we got redirected to login page <br/>
+There we need to provide correct username and password mentioned in tomcat-users.xml <br/>

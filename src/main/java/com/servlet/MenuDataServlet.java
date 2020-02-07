@@ -11,6 +11,8 @@ import data.MenuDataService;
 
 public class MenuDataServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 9170355760313656038L;
+
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse resp) {
 		try (PrintWriter out = resp.getWriter()) {

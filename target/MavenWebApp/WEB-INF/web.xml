@@ -5,12 +5,6 @@
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
 	<servlet>
-		<servlet-name>SimpleServlet</servlet-name>
-		<display-name>SimpleServlet</display-name>
-		<description></description>
-		<servlet-class>com.servlet.SimpleServlet</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>WelcomeCurrentDateServlet</servlet-name>
 		<servlet-class>com.servlet.WelcomeCurrentDateServlet</servlet-class>
 	</servlet>
@@ -19,9 +13,38 @@
 		<servlet-class>com.servlet.MenuDataServlet</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>SearchResultServlet</servlet-name>
+		<servlet-class>com.servlet.SearchResultServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>OrderReceivedServlet</servlet-name>
+		<servlet-class>com.servlet.OrderReceivedServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ThankYouServlet</servlet-name>
+		<servlet-class>com.servlet.ThankYouServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewMenuServlet</servlet-name>
+		<servlet-class>com.servlet.ViewMenuServlet</servlet-class>
+	</servlet>
+
 	<servlet-mapping>
-		<servlet-name>SimpleServlet</servlet-name>
-		<url-pattern>/hello</url-pattern>
+		<servlet-name>ViewMenuServlet</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ThankYouServlet</servlet-name>
+		<url-pattern>/thankYou</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>OrderReceivedServlet</servlet-name>
+		<url-pattern>/orderReceived</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SearchResultServlet</servlet-name>
+		<url-pattern>/searchResults</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>WelcomeCurrentDateServlet</servlet-name>
@@ -29,6 +52,43 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>MenuDataServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/menu</url-pattern>
 	</servlet-mapping>
+
+	<security-role>
+		<role-name>user</role-name>
+	</security-role>
+	<security-role>
+		<role-name>admin</role-name>
+	</security-role>
+
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Order pages</web-resource-name>
+			<url-pattern>/thankYou</url-pattern>
+			<url-pattern>/menu</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>user</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>staff pages</web-resource-name>
+			<url-pattern>/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login.html</form-login-page>
+			<form-error-page>/failed-login.html</form-error-page>
+		</form-login-config>
+	</login-config>
 </web-app>
