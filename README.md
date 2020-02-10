@@ -34,5 +34,5 @@ just add **javax.servlet.annotation @WebFilter**  provide servlet url list to wh
 **14** **HttpServletRequestWrapper** class can be extended to overrite ServletRequest methods like getParameter. this is example of **decorator design pattern**.<br/>
 **15** **JSP - Java Server Pages** is a page that has java code inside html.So, it will be easier to create page.<br/>
 JSP is first translated to servlet and after that servlet is compiled and then html is returned. **Scriptlet** are used to embed java in html<br/>
-**16** In JSP everything we write will go inside service method of servlet. but we want import to be at the top of java class.so, we cannot write it inside <% tag. so,for that we will page directive which will tell compiler that these lines go at the top and not part of servlet. e.g.  - <%@ page import = "java.util.Date" %> <br/>
+**16** In JSP everything we write will go inside service method of servlet. but we want import to be at the top of java class.so, we cannot write it inside <% tag. so,for that we will page directive which will tell compiler that these lines go at the top and not part of servlet. e.g.  - **<%@ page import = "java.util.Date" %>** <br/>
 
