@@ -28,5 +28,7 @@ In java this can be done directly by using encode method. encode method append j
 There we need to provide correct username and password mentioned in tomcat-users.xml <br/>
 **10** To get logged-in user name use. httpRequestObj.getUserPrincipal().getName() method<br/>
 **11** In this example H2-database is used as for it no new installation required. H2 databse is used in embedded mode.<br/>
-**12** DB file named restaurant will get created inside users folder e.g. - C:\Users\g521885\restaurant.mv
+**12** DB file named restaurant will get created inside users folder e.g. - C:\Users\g521885\restaurant.mv<br/>
+**13** **ServletFilter**  are used to intercept servlet request. Inside doFilter we can perform - logging,can modify request param or perform validation of request.<br/>
+just add javax.servlet.annotation @WebFilter and provide servlet url list to which we want to apply this filter.<br/>
 
