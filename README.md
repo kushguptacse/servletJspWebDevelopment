@@ -26,4 +26,7 @@ In java this can be done directly by using encode method. encode method append j
 **9.3** Create login page which has form action - j_security_check and j_username and j_password for input's<br/>
 **9.4** Now run the application and if we try to access restricted resource we got redirected to login page <br/>
 There we need to provide correct username and password mentioned in tomcat-users.xml <br/>
-**10** TO get logged-in user name use. httpRequestObj.getUserPrincipal().getName() method<br/>
+**10** To get logged-in user name use. httpRequestObj.getUserPrincipal().getName() method<br/>
+**11** In this example H2-database is used as for it no new installation required. H2 databse is used in embedded mode.<br/>
+**12** DB file named restaurant will get created inside users folder e.g. - C:\Users\g521885\restaurant.mv
+
