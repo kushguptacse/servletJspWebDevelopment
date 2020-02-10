@@ -13,7 +13,7 @@ Since this is the first request server creates sessionid(unique identifier to id
 **5.3** Now after searching another product. user again wants to add one more product to cart.<br/> 
 **5.4** So,new request is send to server to add product2 to cart and along with request cookie is also send.<br/>
 **5.5** On recieving request server read the session id from cookie and enquire db to get cart details and update cart with new product. and send the response with cookie back to browser.<br/>
-**6** In java request.getSession() will give javax.servlet.http.HttpSession object and by using setAttribute we can set <key,value> pair into session.<br/>
+**6** In java request.getSession() will give **javax.servlet.http.HttpSession** object and by using setAttribute we can set <key,value> pair into session.<br/>
 key is String and value can be any Object type.<br/>
 It is an in-memory java mapand in browser when we see cookie we only see session id and if we delete that cookie server will not be able to recognize <br/>
 **7**. **Session timeout** -> can be set in web.xml using tag session-timeout under session-config tag. if we set 120 it means session will remain till 2 minute.
@@ -30,5 +30,6 @@ There we need to provide correct username and password mentioned in tomcat-users
 **11** In this example H2-database is used as for it no new installation required. H2 databse is used in embedded mode.<br/>
 **12** DB file named restaurant will get created inside users folder e.g. - C:\Users\g521885\restaurant.mv<br/>
 **13** **ServletFilter**  are used to intercept servlet request. Inside doFilter we can perform - logging,can modify request param or perform validation of request.<br/>
-just add javax.servlet.annotation @WebFilter and provide servlet url list to which we want to apply this filter.<br/>
+just add **javax.servlet.annotation @WebFilter**  provide servlet url list to which we want to apply this filter and implement **javax.servlet.Filter**<br/>
+**14** **HttpServletRequestWrapper** class can be extended to overrite ServletRequest methods like getParameter. this is example of **decorator design pattern**.<br/>
 
