@@ -32,4 +32,6 @@ There we need to provide correct username and password mentioned in tomcat-users
 **13** **ServletFilter**  are used to intercept servlet request. Inside doFilter we can perform - logging,can modify request param or perform validation of request.<br/>
 just add **javax.servlet.annotation @WebFilter**  provide servlet url list to which we want to apply this filter and implement **javax.servlet.Filter**<br/>
 **14** **HttpServletRequestWrapper** class can be extended to overrite ServletRequest methods like getParameter. this is example of **decorator design pattern**.<br/>
+**15** **JSP - Java Server Pages** is a page that has java code inside html.So, it will be easier to create page.<br/>
+JSP is first translated to servlet and after that servlet is compiled and then html is returned. **Scriptlet** are used to embed java in html
 
