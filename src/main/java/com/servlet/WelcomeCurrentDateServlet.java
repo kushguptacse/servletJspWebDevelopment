@@ -15,7 +15,9 @@ public class WelcomeCurrentDateServlet extends HttpServlet {
 	public void service(HttpServletRequest req, HttpServletResponse resp) {
 		try (PrintWriter out = resp.getWriter()) {
 			resp.setContentType("text/html");
-			out.println("<html><body><h1>Hello !!</h1><p>" + new Date() + "</p></body></html>");
+			out.println(
+					"<html><body><h1>Hello " + (req.getUserPrincipal() != null ? req.getUserPrincipal().getName() : "")
+							+ " !!</h1><p>" + new Date() + "</p></body></html>");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

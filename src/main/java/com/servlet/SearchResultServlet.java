@@ -6,7 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import data.MenuDataService;
+import data.MenuDao;
+import data.MenuDaoFactory;
 
 public class SearchResultServlet extends HttpServlet {
 
@@ -21,9 +22,9 @@ public class SearchResultServlet extends HttpServlet {
 			if (searchTerm == null) {
 				out.println("Error!!! Missing search term</body></html>");
 			}
-			MenuDataService service = new MenuDataService();
+			MenuDao menuDao = MenuDaoFactory.getMenuDao();
 			out.println("<ul>");
-			service.find(searchTerm).forEach(o -> out.println("<li>" + o + "  " + o.getDescription() + "</li>"));
+			menuDao.find(searchTerm).forEach(o -> out.println("<li>" + o + "  " + o.getDescription() + "</li>"));
 			out.println("</ul></body></html>");
 		} catch (Exception ex) {
 			ex.printStackTrace();

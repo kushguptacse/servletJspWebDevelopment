@@ -21,7 +21,7 @@ public class ThankYouServlet extends HttpServlet {
 			if (total == null) {
 				resp.sendRedirect("menu");
 			}
-			out.println("<html><body><h1>Ricky's Restaurant</h1>");
+			out.println("<html><body><h1>My Restaurant</h1>");
 			out.println("<h2>Order your food</h2>");
 			out.println("Thank you - your order has been received. You need to pay $" + total);
 

@@ -7,30 +7,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import data.MenuDataService;
+import data.MenuDao;
+import data.MenuDaoFactory;
+import domain.Order;
 
 public class OrderReceivedServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3470816338280531038L;
-	MenuDataService menuDataService = new MenuDataService();
+	private MenuDao menuDao = MenuDaoFactory.getMenuDao();
 
 	@Override
-	public void service(HttpServletRequest request, HttpServletResponse response) {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 
-		int maxId = menuDataService.getFullMenu().size();
+		int maxId = menuDao.getFullMenu().size();
+		Order order = menuDao.newOrder(request.getUserPrincipal().getName());
 		for (int i = 0; i < maxId; i++) {
 			String quantity = request.getParameter("item_" + i);
 			try {
 				int q = Integer.parseInt(quantity);
 				if (q > 0)
-					menuDataService.addToOrder(menuDataService.getItem(i), q);
+					menuDao.addToOrder(order.getId(), menuDao.getItem(i), q);
+				order.addToOrder(menuDao.getItem(i), q);
 			} catch (NumberFormatException nfe) {
 				// that's fine it just means there wasn't an order for this item
 			}
 
 		}
 
-		double total = menuDataService.getOrderTotal();
+		double total = menuDao.getOrderTotal(order.getId());
 		HttpSession session = request.getSession();
 		session.setAttribute("total", total);
 		// if cookie is disabled then session id needed to be send in request param

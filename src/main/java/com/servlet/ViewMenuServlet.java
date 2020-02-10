@@ -8,18 +8,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import data.MenuDataService;
+import data.MenuDao;
+import data.MenuDaoFactory;
 import domain.MenuItem;
 
 public class ViewMenuServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1951743804810133298L;
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 
-		MenuDataService menuDataService = new MenuDataService();
-		List<MenuItem> menuItems = menuDataService.getFullMenu();
+		MenuDao menuDao = MenuDaoFactory.getMenuDao();
+		List<MenuItem> menuItems = menuDao.getFullMenu();
 
 		out.println("<html><body><h1>Ricky's Restaurant</h1>");
 		out.println("<h2>Menu</h2><ul>");

@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import data.MenuDataService;
+import data.MenuDao;
+import data.MenuDaoFactory;
 
 public class MenuDataServlet extends HttpServlet {
 
@@ -20,9 +21,9 @@ public class MenuDataServlet extends HttpServlet {
 			out.println(
 					"<html><body><h1>Restaurant Menu</h1><h2>Order Your Food</h2><form action='orderReceived' method='POST'>");
 
-			MenuDataService service = new MenuDataService();
+			MenuDao menuDao = MenuDaoFactory.getMenuDao();
 			out.println("<ul>");
-			service.getFullMenu()
+			menuDao.getFullMenu()
 					.forEach(o -> out.println("<li>" + o + "<input type='text' name='item_" + o.getId() + "'/></li>"));
 			out.println("</ul><input type='submit'/></form></body></html>");
 		} catch (IOException e) {
