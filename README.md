@@ -1,5 +1,5 @@
 # servletJspWebDevelopment
-**1**.Contains example of dynamic web project using maven,java 8,apache tomcat 9.<br/>
+**1**.Contains example of dynamic web project using maven,java 8,apache tomcat 9. Here framework like Spring,Strut,JSF is not used<br/>
 **2**.Servlet is added to return dynamic html.<br/>
 **3**.As a good practice return redirect url from post method.<br/>
 by this way after receiving response user cannot resbmit the form by refreshing browser refresh button.<br/>
@@ -26,3 +26,4 @@ In java this can be done directly by using encode method. encode method append j
 **9.3** Create login page which has form action - j_security_check and j_username and j_password for input's<br/>
 **9.4** Now run the application and if we try to access restricted resource we got redirected to login page <br/>
 There we need to provide correct username and password mentioned in tomcat-users.xml <br/>
+**10** TO get logged-in user name use. httpRequestObj.getUserPrincipal().getName() method<br/>
