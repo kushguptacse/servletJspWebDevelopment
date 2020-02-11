@@ -3,9 +3,10 @@
 <title>Current Time</title>
 </head>
 <body>
-	<p>
-		Current Time in IST -
-		<%=new java.util.Date()%>
-		</p>
+    <jsp:include page="/header.jsp"></jsp:include>
+	Hello <%=request.getAttribute("user")%>
+	<br/>
+	Current Time <%=request.getAttribute("date") %>
+	<jsp:include page="/footer.jsp"></jsp:include>
 </body>
 </html>

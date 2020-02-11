@@ -7,8 +7,9 @@
 <div class="links">
 <a href='' class="button">View the menu</a>
 <a href='searchResults?searchTerm=veg' class="button">View all of our Veg dishes</a>
-<a href='search.html' class="button">Search the menu</a>
-<a href='menu' class="button">Order a meal to collect</a>
+<a href='search.jsp' class="button">Search the menu</a>
+<a href='ordermenu' class="button">Order a meal to collect</a>
+<a href='currenttime' class="button">Current time</a>
 <div class="clearBoth"></div>
 </div>
 <div class="main">

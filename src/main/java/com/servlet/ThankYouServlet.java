@@ -1,8 +1,10 @@
 package com.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,21 +17,16 @@ public class ThankYouServlet extends HttpServlet {
 	private static final long serialVersionUID = 2037970152616559803L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-		try (PrintWriter out = resp.getWriter()) {
-			resp.setContentType("text/html");
-			HttpSession session = req.getSession();
-			Object total = session.getAttribute("total");
-			if (total == null) {
-				resp.sendRedirect("menu");
-			}
-			out.println("<html><body><h1>My Restaurant</h1>");
-			out.println("<h2>Order your food</h2>");
-			out.println("Thank you - your order has been received. You need to pay $" + total);
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		Object total = session.getAttribute("total");
 
-			out.println("</body></html>");
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (total == null) {
+			resp.sendRedirect("menu");
+		} else {
+			ServletContext context = getServletContext();
+			RequestDispatcher reqDispatch = context.getRequestDispatcher("/thank-you.jsp");
+			reqDispatch.forward(req, resp);
 		}
 	}
 

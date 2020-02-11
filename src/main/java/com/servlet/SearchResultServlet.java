@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import data.MenuDao;
 import data.MenuDaoFactory;
+import domain.MenuItem;
 
 @WebServlet("/searchResults")
 public class SearchResultServlet extends HttpServlet {
@@ -18,16 +20,14 @@ public class SearchResultServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		try (PrintWriter out = resp.getWriter()) {
-			resp.setContentType("text/html");
-			out.println("<html><body><h2>Searched Item</h2>");
 			String searchTerm = req.getParameter("searchTerm");
 			if (searchTerm == null) {
-				out.println("Error!!! Missing search term</body></html>");
+				out.println("Error!!! Missing search term");
 			}
 			MenuDao menuDao = MenuDaoFactory.getMenuDao();
-			out.println("<ul>");
-			menuDao.find(searchTerm).forEach(o -> out.println("<li>" + o + "  " + o.getDescription() + "</li>"));
-			out.println("</ul></body></html>");
+			List<MenuItem> menuItems = menuDao.find(searchTerm);
+			req.setAttribute("menuItems", menuItems);
+			getServletContext().getRequestDispatcher("/search-results.jsp").forward(req, resp);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
