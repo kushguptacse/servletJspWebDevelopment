@@ -1,5 +1,5 @@
 # servletJspWebDevelopment
-app url - http://localhost:8080/MavenWebApp/
+app url - http://localhost:8080/MavenWebApp/ <br/>
 **1**.Contains example of dynamic web project using maven,java 8,apache tomcat 9. Here framework like Spring,Strut,JSF is not used<br/>
 **2**.Servlet is added to return dynamic html.<br/>
 **3**.As a good practice return redirect url from post method.<br/>
