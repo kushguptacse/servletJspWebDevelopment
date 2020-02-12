@@ -39,4 +39,5 @@ JSP is first translated to servlet and after that servlet is compiled and then h
 **17** **<%= %>** is used to display expression which result in some value.<br/>
 **18** It is still tough to call java code inside jsp to loop over collection or call api. so, to make it more html freindly **jstl tags** are introduced. which looks like html tag but internally when compiled it get converted into some java code.<br/>
 **19** There is one tag lib provided by sun which contain all general purpose tags we needed **<%@ taglib uri="name_of_tag_lib" prefix="local_name_by_which_we_refer_in_local" %>** <br/> To use it we need to add dependency in pom first.<br/>
+**20** similarly we can use formatting jstl library also which contains formatDate and formatNumber method. where core library contains core tags like foreach,if<br/>
 
