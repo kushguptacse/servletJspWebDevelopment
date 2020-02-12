@@ -6,12 +6,12 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-	<h2>Searched Item</h2>
+	<h2>Items</h2>
 	<ul>
 		<%
 			for (MenuItem menuItem : (List<MenuItem>) request.getAttribute("menuItems")) {
 		%>
-		<li><%=menuItem%></li>
+		<li><%=menuItem.getDescription()%></li>
 		<%
 			}
 		%>

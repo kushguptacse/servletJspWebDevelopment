@@ -27,7 +27,7 @@
 		<web-resource-collection>
 			<web-resource-name>Order pages</web-resource-name>
 			<url-pattern>/thankYou</url-pattern>
-			<url-pattern>/menu</url-pattern>
+			<url-pattern>/ordermenu</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>user</role-name>

@@ -23,7 +23,7 @@ public class OrderReceivedServlet extends HttpServlet {
 
 		int maxId = menuDao.getFullMenu().size();
 		Order order = menuDao.newOrder(request.getUserPrincipal().getName());
-		for (int i = 0; i < maxId; i++) {
+		for (int i = 1; i <= maxId; i++) {
 			String quantity = request.getParameter("item_" + i);
 			try {
 				int q = Integer.parseInt(quantity);

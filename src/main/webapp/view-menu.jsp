@@ -1,5 +1,3 @@
-<%@ page import="data.MenuDao"%>
-<%@ page import="data.MenuDaoFactory"%>
 <%@ page import="domain.MenuItem"%>
 <%@ page import="java.util.List"%>
 <html>
@@ -7,15 +5,11 @@
 <title>My Menu</title>
 </head>
 <body>
-	<%
-		MenuDao menuDao = MenuDaoFactory.getMenuDao();
-		List<MenuItem> menuItems = menuDao.getFullMenu();
-	%>
 	<jsp:include page="/header.jsp"></jsp:include>
-	<h2>Menu</h2>
+	<h2>Items</h2>
 	<ul>
 		<%
-			for (MenuItem menuItem : menuItems) {
+			for (MenuItem menuItem : (List<MenuItem>) request.getAttribute("menuItems")) {
 		%>
 		<li><%=menuItem%></li>
 		<%
