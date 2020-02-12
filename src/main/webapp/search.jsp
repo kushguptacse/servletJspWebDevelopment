@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Restaurant - find your favourite dish</title>
+<title>Restaurant - find your favorite dish</title>
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
