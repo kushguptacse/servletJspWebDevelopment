@@ -4,9 +4,9 @@
 </head>
 <body>
     <jsp:include page="/header.jsp"></jsp:include>
-	Hello <%=request.getAttribute("user")%>
+	Hello ${user} 
 	<br/>
-	Current Time <%=request.getAttribute("date") %>
+	Current Time  ${date}
 	<jsp:include page="/footer.jsp"></jsp:include>
 </body>
 </html>
