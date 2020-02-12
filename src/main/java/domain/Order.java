@@ -33,7 +33,6 @@ public class Order {
 		this.status = status;
 	}
 
-	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for (MenuItem menuItem : currentOrder.keySet()) {
@@ -58,4 +57,7 @@ public class Order {
 		return customer;
 	}
 
+	public void setContents(Map<MenuItem, Integer> contents) {
+		this.currentOrder = contents;
+	}
 }

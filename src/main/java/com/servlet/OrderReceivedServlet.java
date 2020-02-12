@@ -36,9 +36,8 @@ public class OrderReceivedServlet extends HttpServlet {
 
 		}
 
-		double total = menuDao.getOrderTotal(order.getId());
 		HttpSession session = request.getSession();
-		session.setAttribute("total", total);
+		session.setAttribute("orderId", order.getId());
 		// if cookie is disabled then session id needed to be send in request param
 		// which is called url-rewriting.
 		// in java this can be done directly by using encode method. encode method
