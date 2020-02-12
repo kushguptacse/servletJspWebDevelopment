@@ -17,9 +17,7 @@ public class WelcomeCurrentDateServlet extends HttpServlet {
 	public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getUserPrincipal() != null) {
 			req.setAttribute("user", req.getUserPrincipal().getName());
-		} else {
-			req.setAttribute("user", "");
-		}
+		} 
 		req.setAttribute("date", new Date());
 		getServletContext().getRequestDispatcher("/time.jsp").forward(req, resp);
 	}

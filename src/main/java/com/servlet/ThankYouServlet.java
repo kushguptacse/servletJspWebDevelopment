@@ -25,6 +25,7 @@ public class ThankYouServlet extends HttpServlet {
 			resp.sendRedirect("menu");
 		} else {
 			ServletContext context = getServletContext();
+			req.setAttribute("currency", "USD");
 			RequestDispatcher reqDispatch = context.getRequestDispatcher("/thank-you.jsp");
 			reqDispatch.forward(req, resp);
 		}
