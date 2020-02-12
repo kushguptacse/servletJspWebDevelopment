@@ -14,12 +14,8 @@ import data.MenuDaoFactory;
 import domain.MenuItem;
 
 
-@WebServlet("")
+@WebServlet("/viewmenu")
 public class ViewMenuServlet extends HttpServlet {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1951743804810133298L;
 
 	public void service(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {

@@ -1,5 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <html>
 <head>
 <title>Current Time</title>
@@ -9,7 +9,9 @@
 	<c:if test="${user!=null}">
 		Hello ${user} 
     </c:if>
-	<br /> Current Time <f:formatDate type="both" value="${date}" />
-	<jsp:include page="/footer.jsp"></jsp:include>
+	<br /> Current Time
+	<span id="date"> <f:formatDate type="both" value="${date}" /> <jsp:include
+			page="/footer.jsp"></jsp:include>
+	</span>
 </body>
 </html>
