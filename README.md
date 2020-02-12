@@ -37,5 +37,6 @@ just add **javax.servlet.annotation @WebFilter**  provide servlet url list to wh
 JSP is first translated to servlet and after that servlet is compiled and then html is returned. **Scriptlet** are used to embed java in html<br/>
 **16** In JSP everything we write will go inside service method of servlet. but we want import to be at the top of java class.so, we cannot write it inside <% tag. so,for that we will page directive which will tell compiler that these lines go at the top and not part of servlet. e.g.  - **<%@ page import = "java.util.Date" %>** <br/>
 **17** **<%= %>** is used to display expression which result in some value.<br/>
-**18** It is still tough to call java code inside jsp to loop over collection or call api. so, to make it more html freindly **jstl tags** are introduced. which looks like html tag but internally when compiled it get converted into servlet java code.<br/>
+**18** It is still tough to call java code inside jsp to loop over collection or call api. so, to make it more html freindly **jstl tags** are introduced. which looks like html tag but internally when compiled it get converted into some java code.<br/>
+**19** There is one tag lib provided by sun which contain all general purpose tags we needed **<%@ taglib uri="name_of_tag_lib" prefix="local_name_by_which_we_refer_in_local" %>** <br/> To use it we need to add dependency in pom first.<br/>
 
