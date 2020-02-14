@@ -14,7 +14,7 @@ public class WelcomeCurrentDateServlet extends HttpServlet {
 	private static final long serialVersionUID = -6678464044266343762L;
 
 	@Override
-	public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getUserPrincipal() != null) {
 			req.setAttribute("user", req.getUserPrincipal().getName());
 		} 

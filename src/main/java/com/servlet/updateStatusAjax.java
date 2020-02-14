@@ -2,8 +2,8 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,8 +29,9 @@ public class updateStatusAjax extends HttpServlet {
 		Order order = menuDao.getOrder(orderId);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("status", order.getStatus());
-		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
-		jsonObject.put("time", sdf.format(new Date()));
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		jsonObject.put("time", now.format(formatter));
 		PrintWriter out = resp.getWriter();
 		out.print(jsonObject.toString());
 		out.close();

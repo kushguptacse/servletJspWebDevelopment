@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import data.MenuDao;
 import data.MenuDaoFactory;
 import domain.Order;
+import websocket.KitchenDisplaySessionHandler;
 
 @WebServlet("/orderReceived")
 public class OrderReceivedServlet extends HttpServlet {
@@ -38,6 +39,9 @@ public class OrderReceivedServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("orderId", order.getId());
+		//web socket code 
+		KitchenDisplaySessionHandler.getInstance().addNewOrder(order);
+		
 		// if cookie is disabled then session id needed to be send in request param
 		// which is called url-rewriting.
 		// in java this can be done directly by using encode method. encode method

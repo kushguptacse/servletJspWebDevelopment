@@ -1,7 +1,6 @@
 package data;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -48,8 +47,8 @@ public class DatabaseBootstrap {
 		return menuItems;
 	}
 
-	public void initializeDatabase() {
-		try (Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");) {
+	public void initializeDatabase(Connection connection) {
+		try (Connection conn = connection;) {
 
 			try (PreparedStatement prepStm = conn.prepareStatement("DROP TABLE IF EXISTS menuitems;")) {
 				prepStm.execute();

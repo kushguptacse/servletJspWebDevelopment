@@ -20,18 +20,16 @@ public class MenuDao {
 	public MenuDao() {
 		try {
 			Class.forName("org.h2.Driver");
-//			DatabaseBootstrap bootstrap = new DatabaseBootstrap();
-//			bootstrap.initializeDatabase();
-		} catch (ClassNotFoundException ex) {
+			DatabaseBootstrap bootstrap = new DatabaseBootstrap();
+			bootstrap.initializeDatabase(getConnection());
+		} catch (SQLException | ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
-		
 	}
 
 	public List<Order> getAllOrders() {
 		List<Order> orders = new ArrayList<Order>();
-		try (Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");
-				Statement stm = conn.createStatement();) {
+		try (Connection conn = getConnection(); Statement stm = conn.createStatement();) {
 
 			ResultSet results = stm.executeQuery("SELECT * FROM orders");
 
@@ -66,7 +64,7 @@ public class MenuDao {
 
 	public List<MenuItem> getFullMenu() {
 		List<MenuItem> menuItems = null;
-		try (Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");
+		try (Connection conn = getConnection();
 				Statement stm = conn.createStatement();
 				ResultSet results = stm.executeQuery("SELECT * FROM menuitems");) {
 			menuItems = buildMenu(results);
@@ -78,7 +76,7 @@ public class MenuDao {
 
 	public List<MenuItem> find(String searchString) {
 		List<MenuItem> menuItems = null;
-		try (Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");
+		try (Connection conn = getConnection();
 				PreparedStatement stm = conn
 						.prepareStatement("SELECT * FROM menuitems WHERE name LIKE ? OR description LIKE ?");) {
 
@@ -95,7 +93,7 @@ public class MenuDao {
 
 	public MenuItem getItem(int id) {
 		List<MenuItem> menuItems = null;
-		try (Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");
+		try (Connection conn = getConnection();
 				PreparedStatement stm = conn.prepareStatement("SELECT * FROM menuitems WHERE id = ?");) {
 
 			stm.setInt(1, id);
@@ -112,7 +110,7 @@ public class MenuDao {
 		Order order = new Order();
 		order.setStatus("pending");
 		order.setCustomer(customer);
-		try (Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");
+		try (Connection conn = getConnection();
 				PreparedStatement stm = conn.prepareStatement("INSERT INTO orders (status, customer) values (?,?)",
 						Statement.RETURN_GENERATED_KEYS);) {
 			stm.setString(1, order.getStatus());
@@ -157,7 +155,7 @@ public class MenuDao {
 	}
 
 	public void addToOrder(Long id, MenuItem menuItem, int quantity) {
-		try (Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");
+		try (Connection conn = getConnection();
 				Statement stm = conn.createStatement();
 				ResultSet res = stm.executeQuery("SELECT * FROM orders WHERE ID = " + id);
 				PreparedStatement stmUpdate = conn.prepareStatement("UPDATE orders SET contents = ? WHERE id = ?");) {
@@ -181,7 +179,7 @@ public class MenuDao {
 	}
 
 	public void updateOrderStatus(Long id, String status) {
-		try (Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");
+		try (Connection conn = getConnection();
 				Statement stm = conn.createStatement();
 				PreparedStatement stmUpdate = conn.prepareStatement("UPDATE orders SET status = ? WHERE id = ?");) {
 			stmUpdate.setString(1, status);
@@ -195,7 +193,7 @@ public class MenuDao {
 
 	public Double getOrderTotal(Long id) {
 		double d = 0d;
-		try (Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");
+		try (Connection conn = getConnection();
 				Statement stm = conn.createStatement();
 				ResultSet res = stm.executeQuery("SELECT * FROM orders WHERE id = " + id);) {
 			res.next();
@@ -211,7 +209,7 @@ public class MenuDao {
 	}
 
 	public Order getOrder(Long id) {
-		try (Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");
+		try (Connection conn = getConnection();
 				Statement stm = conn.createStatement();
 				ResultSet res = stm.executeQuery("SELECT * FROM orders WHERE id = " + id);) {
 			res.next();
@@ -226,5 +224,13 @@ public class MenuDao {
 			throw new RuntimeException(e);
 		}
 
+	}
+
+	private Connection getConnection() throws SQLException {
+//		Properties prop = new Properties();
+//		prop.setProperty("user", "");
+//		prop.setProperty("password", "");
+//		return Driver.load().connect("jdbc:h2:mem:restaurant", prop);
+		return DriverManager.getConnection("jdbc:h2:~/restaurant", "", "");
 	}
 }
