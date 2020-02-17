@@ -10,7 +10,7 @@ import javax.websocket.Session;
 import org.json.JSONObject;
 
 import domain.Order;
-
+ 
 public final class KitchenDisplaySessionHandler {
 
 	private static final KitchenDisplaySessionHandler INSTANCE = new KitchenDisplaySessionHandler();;
