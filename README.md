@@ -39,5 +39,9 @@ JSP is first translated to servlet and after that servlet is compiled and then h
 **17** **<%= %>** is used to display expression which result in some value.<br/>
 **18** It is still tough to call java code inside jsp to loop over collection or call api. so, to make it more html freindly **jstl tags** are introduced. which looks like html tag but internally when compiled it get converted into some java code.<br/>
 **19** There is one tag lib provided by sun which contain all general purpose tags we needed **<%@ taglib uri="name_of_tag_lib" prefix="local_name_by_which_we_refer_in_local" %>** <br/> To use it we need to add dependency in pom first.<br/>
-**20** similarly we can use formatting jstl library also which contains formatDate and formatNumber method. where core library contains core tags like foreach,if<br/>
-
+**20** Similarly we can use formatting jstl library also which contains formatDate and formatNumber method. where core library contains core tags like foreach,if.<br/>
+**21** **AJAX -Asynchronus javascript and xml** is a way by which request is send via java script fucntion to servlet and  servlet return response html or json back and then java script update the specific section of page.<br/>ThankYou.jsp has example of such flow<br/>
+**22** **Asynchronus servlet**- Here connection among client and server remained open for long duration. and when server ready response is send. it is different from ajax in a way that in ajax client keeps on checking server wheather any response recieved or not in a fixed duration interval.<br/>
+On other hand in Asynchronus servlet since connection is opened always.no waiting done and no time is wasted to create connection again and again after fixed interval.<br/>
+The Problem with Asynchronus servlet is that server thread is keep on waiting (as connection is opened) so,we might get no thread available in case of heavy load.<br/>that is why async servlet are not used.instead of that **Web Socket** are used for bi-directional communication.<br/>
+**23** Web Socket uses tcp on other hand ajax uses http. so, extra overhead of keeping httpHeaders are not needed and also connection is persistent between a client and server.<br/>
