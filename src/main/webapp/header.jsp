@@ -10,7 +10,7 @@
 <a href='search.jsp' class="button">Search the menu</a>
 <a href='ordermenu' class="button">Order a meal to collect</a>
 <a href='currenttime' class="button">Current time</a>
-<a href='processorder' class="button">Process Order</a>
+<a href='KitchenManager.jsp' class="button">Kitchen Manager</a>
 <div class="clearBoth"></div>
 </div>
 <div class="main">
