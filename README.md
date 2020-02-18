@@ -1,4 +1,6 @@
 # servletJspWebDevelopment
+To fix Project depenednecy issue from eclipse - "Project properties -> Deployment Assembly page" -> add "Project properties -> Deployment Assembly page". <br/> 
+It will add required dependency on tomcat and NoClassDefinitionFound error will get resolved.
 app url - http://localhost:8080/MavenWebApp/ <br/>
 **1**.Contains example of dynamic web project using maven,java 8,apache tomcat 9. Here framework like Spring,Strut,JSF is not used<br/>
 **2**.Servlet is added to return dynamic html.<br/>
